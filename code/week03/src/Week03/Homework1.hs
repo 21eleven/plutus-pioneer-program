@@ -62,7 +62,7 @@ mkValidator dat () ctx = traceIfFalse "conditions not met" (
       twoSigned = txSignedBy info $ unPaymentPubKeyHash $ beneficiary2 dat
 
       atOrBeforeDeadline :: Bool
-      atOrBeforeDeadline = contains (from $ deadline dat) $ txInfoValidRange info
+      atOrBeforeDeadline = contains (to $ deadline dat) $ txInfoValidRange info
 
 
 
