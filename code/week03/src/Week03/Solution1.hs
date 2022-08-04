@@ -15,22 +15,23 @@
 module Week03.Solution1 where
 
 import           Control.Monad        hiding (fmap)
-import           Data.Aeson           (ToJSON, FromJSON)
+import           Data.Aeson           (FromJSON, ToJSON)
 import           Data.Map             as Map
 import           Data.Text            (Text)
 import           Data.Void            (Void)
 import           GHC.Generics         (Generic)
-import           Plutus.Contract
-import qualified PlutusTx
-import           PlutusTx.Prelude     hiding (unless)
 import           Ledger               hiding (singleton)
+import           Ledger.Ada           as Ada
 import           Ledger.Constraints   (TxConstraints)
 import qualified Ledger.Constraints   as Constraints
 import qualified Ledger.Typed.Scripts as Scripts
-import           Ledger.Ada           as Ada
-import           Playground.Contract  (printJson, printSchemas, ensureKnownCurrencies, stage, ToSchema)
+import           Playground.Contract  (ToSchema, ensureKnownCurrencies,
+                                       printJson, printSchemas, stage)
 import           Playground.TH        (mkKnownCurrencies, mkSchemaDefinitions)
 import           Playground.Types     (KnownCurrency (..))
+import           Plutus.Contract
+import qualified PlutusTx
+import           PlutusTx.Prelude     hiding (unless)
 import           Prelude              (IO)
 import qualified Prelude              as P
 import           Text.Printf          (printf)
