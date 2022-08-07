@@ -15,23 +15,24 @@
 module Week03.Vesting where
 
 import           Control.Monad        hiding (fmap)
-import           Data.Aeson           (ToJSON, FromJSON)
+import           Data.Aeson           (FromJSON, ToJSON)
 import           Data.Map             as Map
 import           Data.Text            (Text)
 import           Data.Void            (Void)
 import           GHC.Generics         (Generic)
-import           Plutus.Contract
-import           PlutusTx             (Data (..))
-import qualified PlutusTx
-import           PlutusTx.Prelude     hiding (Semigroup(..), unless)
 import           Ledger               hiding (singleton)
+import           Ledger.Ada           as Ada
 import           Ledger.Constraints   (TxConstraints)
 import qualified Ledger.Constraints   as Constraints
 import qualified Ledger.Typed.Scripts as Scripts
-import           Ledger.Ada           as Ada
-import           Playground.Contract  (printJson, printSchemas, ensureKnownCurrencies, stage, ToSchema)
+import           Playground.Contract  (ToSchema, ensureKnownCurrencies,
+                                       printJson, printSchemas, stage)
 import           Playground.TH        (mkKnownCurrencies, mkSchemaDefinitions)
 import           Playground.Types     (KnownCurrency (..))
+import           Plutus.Contract
+import           PlutusTx             (Data (..))
+import qualified PlutusTx
+import           PlutusTx.Prelude     hiding (Semigroup (..), unless)
 import           Prelude              (IO, Semigroup (..), Show (..), String)
 import           Text.Printf          (printf)
 
@@ -39,6 +40,7 @@ data VestingDatum = VestingDatum
     { beneficiary :: PaymentPubKeyHash
     , deadline    :: POSIXTime
     } deriving Show
+
 
 PlutusTx.unstableMakeIsData ''VestingDatum
 
