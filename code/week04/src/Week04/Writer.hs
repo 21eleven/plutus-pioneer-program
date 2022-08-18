@@ -1,7 +1,7 @@
 module Week04.Writer where
 
-import Control.Monad
-import Week04.Monad
+import           Control.Monad
+import           Week04.Monad
 
 data Writer a = Writer a [String]
     deriving Show
