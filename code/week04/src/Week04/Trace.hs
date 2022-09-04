@@ -1,16 +1,16 @@
-{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE DataKinds        #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Week04.Trace where
 
-import Control.Monad.Freer.Extras as Extras
-import Data.Default               (Default (..))
-import Data.Functor               (void)
-import Ledger.TimeSlot
-import Plutus.Trace
-import Wallet.Emulator.Wallet
+import           Control.Monad.Freer.Extras as Extras
+import           Data.Default               (Default (..))
+import           Data.Functor               (void)
+import           Ledger.TimeSlot
+import           Plutus.Trace
+import           Wallet.Emulator.Wallet
 
-import Week04.Vesting
+import           Week04.Vesting
 
 -- Contract w s e a
 -- EmulatorTrace a
@@ -31,3 +31,5 @@ myTrace = do
     callEndpoint @"grab" h2 ()
     s <- waitNSlots 2
     Extras.logInfo $ "reached " ++ show s
+
+

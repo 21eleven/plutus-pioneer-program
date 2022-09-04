@@ -1,25 +1,26 @@
+{-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications  #-}
-{-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE TypeOperators     #-}
 
 module Week04.Contract where
 
-import Control.Monad.Freer.Extras as Extras
-import Data.Functor               (void)
-import Data.Text                  (Text, unpack)
-import Data.Void                  (Void)
-import Plutus.Contract            as Contract
-import Plutus.Trace.Emulator      as Emulator
-import Wallet.Emulator.Wallet
+import           Control.Monad.Freer.Extras as Extras
+import           Data.Functor               (void)
+import           Data.Text                  (Text, unpack)
+import           Data.Void                  (Void)
+import           Plutus.Contract            as Contract
+import           Plutus.Trace.Emulator      as Emulator
+import           Wallet.Emulator.Wallet
 
 -- Contract w s e a
 -- EmulatorTrace a
 
 myContract1 :: Contract () Empty Text ()
 myContract1 = do
-    void $ Contract.throwError "BOOM!"
     Contract.logInfo @String "hello from the contract"
+    Contract.logInfo @String "second line from contract1"
+    void $ Contract.throwError "BOOM!"
 
 myTrace1 :: EmulatorTrace ()
 myTrace1 = void $ activateContractWallet (knownWallet 1) myContract1
